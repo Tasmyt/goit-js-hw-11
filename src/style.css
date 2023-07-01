@@ -1,0 +1,86 @@
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 16px 0;
+    margin-bottom: 16px;
+    margin-top: 60px;
+}
+
+img {
+    display: block;
+    border-radius: 6px;
+}
+
+.photo-card {
+    display: inline-block;
+    width: 600px;
+    box-shadow: 0 20px 16px -16px rgba(0, 0, 0, 0.6);
+    border-radius: 6px;
+    background-color: rgb(243, 243, 201);
+}
+
+.box {
+    height: 400px;
+    /* width: 300px; */
+}
+.photo {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info {
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    justify-content: center;
+    color: #196523;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-form {
+    position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    background-color: #196523;
+}
+input, button{
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 300px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size:x-large;
+    color: #196523;
+    background-color: beige;
+}
+
+button {
+    width: 120px;
+}
+button:hover {
+    color: beige;
+    background-color:#196523;
+    border: 1px solid beige;
+}
