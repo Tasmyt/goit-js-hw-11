@@ -17,5 +17,5 @@ function t(t){return t&&t.__esModule?t.default:t}var e="undefined"!=typeof globa
             <b>Downloads</b> ${r}
         </p>
         </div> </div>
-        </a>`).join("")}f.addEventListener("submit",function(e){e.preventDefault(),g=e.currentTarget.elements.searchQuery.value,p.innerHTML="",x=1,o.fetchImages(g,x).then(e=>{if(0===e.totalHits||""==g){t(i).Notify.failure("Sorry, there are no images matching your search query. Please try again.");return}p.insertAdjacentHTML("beforeend",b(e.hits)),y.observe(u),h.refresh()}).catch(t=>console.log(t))});
-//# sourceMappingURL=index.0913630e.js.map
+        </a>`).join("")}f.addEventListener("submit",function(e){e.preventDefault(),g=e.currentTarget.elements.searchQuery.value,p.innerHTML="",x=1,o.fetchImages(g,x).then(e=>{if(0===e.totalHits||""==g){t(i).Notify.failure("Sorry, there are no images matching your search query. Please try again.");return}p.insertAdjacentHTML("beforeend",b(e.hits)),y.observe(u),h.refresh()}).catch(t=>console.log(t))}),window.scrollTo({top:100,left:100,behavior:"smooth"});
+//# sourceMappingURL=index.dc9128d8.js.map
