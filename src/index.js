@@ -26,7 +26,7 @@ function onSeach(e) {
   searchQuery = e.currentTarget.elements.searchQuery.value;
 
   galleryBox.innerHTML = '';
-  page = 1;
+  page = 12;
   API.fetchImages(searchQuery, page)
     .then(data => {
       if (data.totalHits === 0 || searchQuery == '') {
@@ -86,7 +86,9 @@ function onLoad(entries, observer) {
 
       API.fetchImages(searchQuery, page)
         .then(data => {
-          if (page > data.totalHits / 40) {
+          console.log(page);
+          console.log(data.totalHits);
+          if (page > data.totalHits / 40 && page != 2) {
             observer.unobserve(target);
             Notiflix.Notify.failure(
               "We're sorry, but you've reached the end of search results."
