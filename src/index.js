@@ -26,7 +26,7 @@ function onSeach(e) {
   searchQuery = e.currentTarget.elements.searchQuery.value;
 
   galleryBox.innerHTML = '';
-  page = 12;
+  page = 1;
   API.fetchImages(searchQuery, page)
     .then(data => {
       if (data.totalHits === 0 || searchQuery == '') {
