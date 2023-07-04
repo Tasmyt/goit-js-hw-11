@@ -20,26 +20,24 @@ let observer = new IntersectionObserver(onLoad, options);
 
 searchForm.addEventListener('submit', onSeach);
 
-function onSeach(e) {
+async function onSeach(e) {
   e.preventDefault();
 
   searchQuery = e.currentTarget.elements.searchQuery.value;
 
   galleryBox.innerHTML = '';
   page = 1;
-  API.fetchImages(searchQuery, page)
-    .then(data => {
-      if (data.totalHits === 0 || searchQuery == '') {
-        Notiflix.Notify.failure(
-          'Sorry, there are no images matching your search query. Please try again.'
-        );
-        return;
-      }
-      galleryBox.insertAdjacentHTML('beforeend', creatMarkup(data.hits));
-      observer.observe(target);
-      LightBox.refresh();
-    })
-    .catch(err => console.log(err));
+  const rezult = await API.fetchImages(searchQuery, page);
+
+  if (rezult.totalHits === 0 || searchQuery == '') {
+    Notiflix.Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
+    return;
+  }
+  galleryBox.insertAdjacentHTML('beforeend', creatMarkup(rezult.hits));
+  observer.observe(target);
+  LightBox.refresh();
 }
 
 function creatMarkup(arr) {
@@ -79,26 +77,21 @@ function creatMarkup(arr) {
     .join('');
 }
 
-function onLoad(entries, observer) {
+async function onLoad(entries, observer) {
+  rezult = await API.fetchImages(searchQuery, page);
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       page += 1;
 
-      API.fetchImages(searchQuery, page)
-        .then(data => {
-          console.log(page);
-          console.log(data.totalHits);
-          if (page > data.totalHits / 40 && page != 2) {
-            observer.unobserve(target);
-            Notiflix.Notify.failure(
-              "We're sorry, but you've reached the end of search results."
-            );
-            return;
-          }
-          galleryBox.insertAdjacentHTML('beforeend', creatMarkup(data.hits));
-          LightBox.refresh();
-        })
-        .catch(err => console.log(err));
+      if (page > rezult.totalHits / 40 && page != 2) {
+        observer.unobserve(target);
+        Notiflix.Notify.failure(
+          "We're sorry, but you've reached the end of search results."
+        );
+        return;
+      }
+      galleryBox.insertAdjacentHTML('beforeend', creatMarkup(rezult.hits));
+      LightBox.refresh();
     }
   });
 }
@@ -106,5 +99,5 @@ function onLoad(entries, observer) {
 window.scrollTo({
   top: 100,
   left: 100,
-  behavior: "smooth",
+  behavior: 'smooth',
 });
